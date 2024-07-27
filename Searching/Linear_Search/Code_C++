@@ -1,1 +1,32 @@
+#include <iostream>
+using namespace std;
+
+// Function to perform linear search
+int linearSearch(const int arr[], int size, int target) {
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] == target) {
+            return i; // Return the index of the target element
+        }
+    }
+    return -1; // Return -1 if the target element is not found
+}
+
+int main() {
+    // Example array
+    int myArray[] = {5, 3, 6, 2, 8};
+    int size = sizeof(myArray) / sizeof(myArray[0]); // Calculate the size of the array
+    int target = 6; // Element to search for
+
+    // Perform linear search
+    int result = linearSearch(myArray, size, target);
+
+    // Check and output the result
+    if (result != -1) {
+        cout << "Element found at index " << result << endl;
+    } else {
+        cout << "Element not found" << endl;
+    }
+
+    return 0;
+}
 
