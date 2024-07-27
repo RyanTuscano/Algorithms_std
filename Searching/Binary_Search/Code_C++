@@ -1,24 +1,42 @@
 #include <iostream>
+#include <algorithm> // For std::sort
 using namespace std;
 
-// Function to perform linear search
-int linearSearch(const int arr[], int size, int target) {
-    for (int i = 0; i < size; ++i) {
-        if (arr[i] == target) {
-            return i; // Return the index of the target element
+// Function to perform binary search
+int binarySearch(const int arr[], int size, int target) {
+    int left = 0;
+    int right = size - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        // Check if the target is present at mid
+        if (arr[mid] == target) {
+            return mid;
+        }
+        
+        // If target is greater, ignore the left half
+        if (arr[mid] < target) {
+            left = mid + 1;
+        }
+        // If target is smaller, ignore the right half
+        else {
+            right = mid - 1;
         }
     }
-    return -1; // Return -1 if the target element is not found
+    
+    // Target is not present in the array
+    return -1;
 }
 
 int main() {
-    // Example array
-    int myArray[] = {5, 3, 6, 2, 8};
+    // Example array (must be sorted for binary search)
+    int myArray[] = {2, 3, 5, 6, 8};
     int size = sizeof(myArray) / sizeof(myArray[0]); // Calculate the size of the array
     int target = 6; // Element to search for
 
-    // Perform linear search
-    int result = linearSearch(myArray, size, target);
+    // Perform binary search
+    int result = binarySearch(myArray, size, target);
 
     // Check and output the result
     if (result != -1) {
